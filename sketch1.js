@@ -2,10 +2,12 @@
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+    val=random(255);
+    bg = color(255,0,0);
 }
 
 function draw() {
-  background(225,0,0);
+  background(bg);
   strokeWeight(3);
   stroke(0);
   line(150,0,200,400);
@@ -17,7 +19,10 @@ function draw() {
   rect(300,150,70,150);
   strokeWeight(10);
   
-  noStroke();
-  fill(200,100);
+  if(mouseX<width/2)
+       //fill(200,255);
+      background(val);
+    //else fill(200,100);
+  //fill(200,100);
   rect(200,150,150,70);
 }
