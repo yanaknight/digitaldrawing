@@ -2,12 +2,12 @@
 
 function setup(){
     createCanvas(windowWidth, windowHeight);
-    background(200);
+   
 }
 
 function draw(){
     
-    
+     background(255);
     
    // x=width/2;
  /*   line(x, 0, width/2, height/2);
