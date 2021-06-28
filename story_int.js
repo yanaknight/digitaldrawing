@@ -15,7 +15,7 @@ var buttons = [];
 var fac = 20; //to space things out
 var option = 0;
 var imgPosX=20;
-var imgPosY=70;
+var imgPosY=80;
 var newImg;
 var rand;
 var maxHeight = 500;
@@ -135,13 +135,13 @@ function setup(){
     
     imgPosX=iWidth+20;
    // print(imgPosX);
+    txt='Lets create a story!! Choose something:'
   
 }
 
 function draw(){
 
     for(var i=0; i<options.length; i++){
-        //text(options[i], (i+0.5)*5*fac, 40);
         button = createButton(options[i],i+1);
         append(buttons,button);
         button.position((i+0.5)*5*fac, 40);
@@ -149,7 +149,7 @@ function draw(){
          
     }
     
-   text(txt, 20, 20, 600, 20);
+   text(txt, 20, 10, 600, 20);
      
     if(option > 0)
         { 
@@ -187,88 +187,91 @@ function draw(){
                
                 
             }
-            
-            
-            
-            /*while(millis()<time+1000)
-              {
-                  
-              }*/
            
             
             noFill();
              txt='';
             
         }
-   //  else if(option==0){txt='Lets create a story!!'}
-    
-    
-        
 }
 
 function createStory(){
   // print(this.value());
     imgPosX = imgPosX+iWidth+20;
-    //print(imgPosX);
     option = this.value();
     
     if(option == 1)
         { 
+            noStroke();
+            fill('white');
+            rect(10,10,600,40);
             
             if(imgBox[option-1].length>0){
+                noFill();
+                stroke(0);
                 if (runOut) runOut=false;
                 rand = int(random(0,imgBox[option-1].length));
                 newImg = imgBox[option-1][rand];
 
                 //remove from array - into some other array in case of future deletion
                 imgBox[option-1].splice(rand,1);
+                txt='';
             }
             else {
-                //text('Run out of things to say!! Try another option', 20, 20);
                 txt = 'Run out of things to say!! Try another option';
                 runOut=true;
-                //newImg='';
             }
         }
     
     else if(option==2)
         { 
+            noStroke();
+            fill('white');
+            rect(10,10,600,40);
+            
             if(imgBox[option-1].length>0){
+                noFill();
+                stroke(0);
                 if (runOut) {
                     runOut=false;
                 }
                 rand = int(random(0,imgBox[option-1].length));
                 newImg = imgBox[option-1][rand];
                 imgBox[option-1].splice(rand,1);
+                txt='';
             }
              else {
-                //text('Run out of things to say!! Try another option', 20, 20);
                 txt = 'Run out of things to say!! Try another option';
                 runOut=true;
-                //newImg='';
             }
             
         }
     else if(option==3)
         {
+            noStroke();
+            fill('white');
+            rect(10,10,600,40);
+            
             if(imgBox[option-1].length>0){
+                noFill();
+                stroke(0);
                 if (runOut) runOut=false;
                 rand = int(random(0,imgBox[option-1].length));
                 newImg = imgBox[option-1][rand];
                 imgBox[option-1].splice(rand,1);
+                txt='';
             }
             else {
-                //text('Run out of things to say!! Try another option', 20, 20);
                 txt = 'Run out of things to say!! Try another option';
                 runOut=true;
-                //newImg='';
+
             }
         }
     else if(option==4)
         {
             noStroke();
             fill('white');
-            rect(10,20,600,40);
+            rect(10,10,600,40);
         
             if(imgBox[option-1].length>0){
                 noFill();
@@ -280,10 +283,8 @@ function createStory(){
                 txt='';
             }
             else {
-                //text('Run out of things to say!! Try another option', 20, 20);
                 txt = 'Run out of things to say!! Try another option';
                 runOut=true;
-                //newImg='';
             }
         }
     
@@ -291,7 +292,7 @@ function createStory(){
         {  
             noStroke();
             fill('white');
-            rect(10,20,600,40);
+            rect(10,10,600,40);
             timesDrunk ++;
         
             if(imgBox[option-1].length>0 && timesDrunk<3){
@@ -314,16 +315,16 @@ function createStory(){
                 timesDrunk=0;
             }
             else {
-                //text('Run out of things to say!! Try another option', 20, 20);
                 txt = 'Run out of things to say!! Try another option';
                 runOut=true;
-                //newImg='';
             }
         }
     
       else if(option==6)
         {
-            
+            noStroke();
+            fill('white');
+            rect(10,10,600,40);
            
             if(imgBox[option-1].length>0 && drink){
                 noFill();
@@ -335,22 +336,13 @@ function createStory(){
             }
             else if (imgBox[option-1].length>0 && !drink){
                 newImg = createImage(1,1);
-                //time=millis();
-                // print('time is '+time);
-                
-                
-                
-                    txt = 'You need to drink before you can be hungover!';
-                 //   print('millis is '+millis());   
-                   //} 
-          
-                
+                noFill();
+                stroke(0);
+                txt = 'You need to drink before you can be hungover!';
             }
             else {
-                //text('Run out of things to say!! Try another option', 20, 20);
                 txt = 'Run out of things to say!! Try another option';
                 runOut=true;
-                //newImg='';
                
             }
         } 
