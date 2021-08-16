@@ -1,5 +1,5 @@
 # digitaldrawing
 
-Adventures in p5!!!
+Adventures in p5.js!!!
 
 Interactive stories, games, collages
