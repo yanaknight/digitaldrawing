@@ -7,7 +7,7 @@ var slit;
 
 function preload(){
 
-    img = loadImage('../../ART/Illustration/DiaryComics21/9a.jpg');    
+    img = loadImage('../../../ART/Illustration/DiaryComics21/9a.jpg');    
     
 }
 

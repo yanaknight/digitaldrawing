@@ -13,7 +13,7 @@ function setup(){
     //imageMode(CENTER);
     background(255);
     vid = createVideo([
-    '../../ART/Illustration/DiaryComics21/story.ogv','../../ART/Illustration/DiaryComics21/story.ogv']);
+    '../../../ART/Illustration/DiaryComics21/story.ogv','../../../ART/Illustration/DiaryComics21/story.ogv']);
    //vid.loop();
     
 }
