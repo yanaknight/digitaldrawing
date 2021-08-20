@@ -2,16 +2,28 @@
 
 var mic;
 var basket;
-var ball;
+var eggs = [];
 var score=0;
+var img;
+var total;
 
 function setup(){
-    createCanvas(600,500);
+    createCanvas(600,600);
+    img = loadImage('img/fat_chicken.png');
     mic = new p5.AudioIn();
     mic.start(); 
     basket = new Basket();
-    ball = new Ball(mic,basket);
+    //ball = new Ball(mic,basket);
+    
+    total = round(random(3,7));
+    
+    eggs [0] = new Egg(mic, basket, true);
+    
+    for(var i=1;i<total;i++){
+        eggs [i] = new Egg(mic, basket, false);
+    }
 }
+
 
 //have to touch somewhere FIRST!!!!! cHROME issue
 function touchStarted() {
@@ -19,32 +31,70 @@ function touchStarted() {
 }
 
 function draw(){
-    background(200);
+    background(220);
     
-    ball.update();
-    ball.render();
+    fill(220,0);
+    stroke(2);
+    ellipse(width/2,height+10,170,100);
+    
+    
+ 
+    for(var i =0;i<eggs.length;i++){
+        eggs[i].update();
+        eggs[i].render();
+    }
     
     basket.render();
     
     text('Score: '+score, 20,20);
+    
+     
 }
 
-function Ball(mic,basket){
-    this.h = height;
+
+function Egg(mic,basket,active){
+    
     this.size = 50;
     this.basket = basket;
-    this.y = this.height;
-    this.x = width/2;
+    this.active=active;
+    this.color = 255;
+    
+    this.init = function(){
+        //this.h = height;
+        this.y = this.height;
+        if(this.active) {
+            this.x = width/2;
+            this.color = color(255, 204, 0,100);
+        }
+        else this.x = random(width/2-this.basket.width/2,width/2+this.basket.width/2);
+        
+       
+    }
     
     this.render = function(){
-        ellipse(width/2,this.y,this.size,this.size); 
+        noStroke();
+        fill(this.color);
+        //push();
+        //translate(random(width),random(height));
+        //rotate(random(TWO_PI));
+        ellipse(this.x,this.y,this.size-10,this.size); 
+        //pop();
     }
     
     this.update = function(){
-        var vol = mic.getLevel();
-        this.y = map(vol,0,0.5,height-25,0);
         
-        this.testBasket();
+        if(this.active){
+           var vol = mic.getLevel();
+            this.y = map(vol,0,0.3,height-26,0);
+        
+            this.testBasket(); 
+        } else this.y = height-26;
+        
+    }
+    
+    this.eaten = function(){
+        this.color = 220;
+        this.active=false;
     }
     
     this.testBasket = function (){
@@ -57,14 +107,20 @@ function Ball(mic,basket){
       if(top&&bottom){
         //if(this.bad) this.paddle.hit();
         this.basket.score();
-        //this.init();
+         //this.init();
+       
+          
+          //take it from eggs array so its not there and set a new one to be THE egg
+          //this.eaten();
       }
     }
+    
+    this.init();
 }
 
 function Basket(){
-  this.width = 100;
-  this.height = 70;
+  this.width = 150;
+  this.height = 120;
   this.speed = 15;
   this.x = width/2-this.width/2;
   this.y = 0;
@@ -85,7 +141,7 @@ function Basket(){
   
   this.render = function(){
     fill(this.color);
-    rect(this.x,this.y,this.width,this.height);
+    image(img,this.x,this.y,this.width,this.height);
     this.color = color(255);
   }
   
