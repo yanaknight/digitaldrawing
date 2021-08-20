@@ -5,7 +5,7 @@ var basket;
 var eggs = [];
 var score=0;
 var img;
-var total;
+var total=5;
 
 function setup(){
     createCanvas(600,600);
@@ -15,12 +15,12 @@ function setup(){
     basket = new Basket();
     //ball = new Ball(mic,basket);
     
-    total = round(random(3,7));
+    //total = round(random(3,7));
     
-    eggs [0] = new Egg(mic, basket, true);
+    eggs [0] = new Egg(basket, true);
     
     for(var i=1;i<total;i++){
-        eggs [i] = new Egg(mic, basket, false);
+        eggs [i] = new Egg(basket, false);
     }
 }
 
@@ -36,8 +36,6 @@ function draw(){
     fill(220,0);
     stroke(2);
     ellipse(width/2,height+10,170,100);
-    
-    
  
     for(var i =0;i<eggs.length;i++){
         eggs[i].update();
@@ -52,7 +50,7 @@ function draw(){
 }
 
 
-function Egg(mic,basket,active){
+function Egg(basket,active){
     
     this.size = 50;
     this.basket = basket;
@@ -92,26 +90,39 @@ function Egg(mic,basket,active){
         
     }
     
+    
     this.eaten = function(){
-        this.color = 220;
-        this.active=false;
+        //this.color = 220;
+        //this.active=false;
+        eggs.splice(this,1);
+        print(eggs);
+    }
+    
+    this.setActive = function (){
+        eggs[0].active = true;
+        eggs[0].x = width/2;
+        eggs[0].color = color(255, 204, 0,100);
     }
     
     this.testBasket = function (){
     
-    var bottom = (this.y+this.size/2 > this.basket.y);
-    var top = (this.y - this.size/2 < this.basket.y + this.basket.height);
     //var left = (this.x+this.size/2 > this.basket.x);
+        var bottom = this.y+this.size/2 < this.basket.height;
+        var top = this.y - this.size/2 < this.basket.height;
     //var right = (this.x-this.size/2<this.basket.x+this.basket.width);
   //  print(this.y - this.size/2, this.basket.y + this.basket.height);
       if(top&&bottom){
         //if(this.bad) this.paddle.hit();
         this.basket.score();
          //this.init();
-       
-          
+          print(this.y+this.size/2);
+          print(this.y-this.size/2);
+          print(this.basket.height);
           //take it from eggs array so its not there and set a new one to be THE egg
-          //this.eaten();
+          
+          //why the f all my eggs are being taken at once?? in batches?? I want one by one.
+          this.eaten();
+          if(eggs.length>0) this.setActive(); this.init();
       }
     }
     
