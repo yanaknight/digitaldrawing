@@ -1,6 +1,8 @@
+// to add or remove images : first add or remove brackets in imgBox var; then add the new images in myBox array; then a new else if counting how many you added and adjusting the order; then finally new cases
+// YES!! this could be done so much simpler if I knew how to program!!!
 var myBox;
 //var imgBox = [];
-var imgBox = [[],[],[],[], [], []];
+var imgBox = [[],[],[],[], [], [], [],[],[],[]];
 var imgBox1 = [];
 var MyImage;
 var place = 0;
@@ -9,7 +11,7 @@ var iWidth;
 var iHeight;
 var button;
 var c;
-var options = ['alone', 'cat', 'city', 'food', 'drinking', 'hangover'];
+var options = ['alone', 'cat', 'city', 'food', 'drinking', 'hangover', 'cleaning','man', 'shop','garden'];
 var button;
 var buttons = [];
 var fac = 20; //to space things out
@@ -47,7 +49,22 @@ myBox =
      // hangover
      'img/hangover/10e.jpg', 'img/hangover/21b.jpg','img/hangover/43c.jpg', 'img/hangover/48a.jpg', 'img/hangover/50c.jpg','img/hangover/51a.jpg','img/hangover/54a.jpg','img/hangover/67c.jpg','img/hangover/67d.jpg',
 'img/hangover/90b.jpg','img/hangover/90c.jpg','img/hangover/90d.jpg','img/hangover/123a.jpg','img/hangover/123b.jpg','img/hangover/123c.jpg','img/hangover/124a.jpg',
-        ];
+        
+    //cleaning
+    'img/cleaning/120a.jpg', 'img/cleaning/126b.jpg','img/cleaning/126c.jpg','img/cleaning/95c.jpg', 'img/cleaning/96a.jpg',
+     
+    //man
+     'img/man/28f.jpg', 'img/man/31a.jpg', 'img/man/31d.jpg', 'img/man/33c.jpg', 'img/man/38a.jpg', 'img/man/44c.jpg', 'img/man/53b.jpg', 'img/man/57a.jpg', 'img/man/59c.jpg', 'img/man/63a.jpg', 'img/man/64d.jpg',
+     'img/man/64e.jpg', 'img/man/69d.jpg', 'img/man/71c.jpg', 'img/man/88a.jpg', 'img/man/88b.jpg', 'img/man/89a.jpg', 'img/man/89b.jpg',
+    
+    //shop
+     'img/shop/1b.jpg', 'img/shop/14b.jpg', 'img/shop/36d.jpg','img/shop/47a.jpg', 'img/shop/63c.jpg', 'img/shop/72c.jpg', 'img/shop/82b.jpg', 'img/shop/83c.jpg', 'img/shop/98b.jpg', 'img/shop/1b.jpg', 'img/shop/110d.jpg', 'img/shop/149b.jpg', 'img/shop/151b.jpg', 
+    
+    //garden
+     'img/garden/77a.jpg', 'img/garden/77b.jpg', 'img/garden/79b.jpg', 'img/garden/80b.jpg', 'img/garden/91a.jpg', 'img/garden/77a.jpg', 'img/garden/97b.jpg', 'img/garden/101c.jpg', 'img/garden/112b.jpg', 
+     'img/garden/134a.jpg', 'img/garden/135a.jpg', 'img/garden/142c.jpg', 'img/garden/144b.jpg', 'img/garden/145a.jpg', 'img/garden/145b.jpg', 'img/garden/129b.jpg', 'img/garden/130d.jpg',
+     
+    ];
        
    // shuffle(myBox,true);
     
@@ -76,8 +93,24 @@ myBox =
             imgBox[4].push(MyImage);   
          }
          
-         else if(i<myBox.length) {
+         else if(i<90) {
             imgBox[5].push(MyImage);   
+         }
+         
+         else if(i<95) {
+            imgBox[6].push(MyImage);   
+         }
+         
+         else if(i<113) {
+            imgBox[7].push(MyImage);   
+         }
+         
+         else if(i<125) {
+            imgBox[8].push(MyImage);   
+         }
+         
+         else if(i<myBox.length) {
+            imgBox[9].push(MyImage);   
          }
     }
    
@@ -88,7 +121,7 @@ myBox =
     //imgBox1 = imgBox;
      
     */
-    print (imgBox);
+  //  print (imgBox);
 }
 
 function setup(){
@@ -346,6 +379,91 @@ function createStory(){
                
             }
         } 
+        else if(option==7)
+        {
+            noStroke();
+            fill('white');
+            rect(10,10,600,40);
+           
+            if(imgBox[option-1].length>0){
+                noFill();
+                stroke(0);
+                if (runOut) runOut=false;
+                rand = int(random(0,imgBox[option-1].length));
+                newImg = imgBox[option-1][rand];
+                imgBox[option-1].splice(rand,1);
+            }
+        
+            else {
+                txt = 'Run out of things to say!! Try another option';
+                runOut=true;
+               
+            }
+        }
+     else if(option==8)
+        {
+            noStroke();
+            fill('white');
+            rect(10,10,600,40);
+           
+            if(imgBox[option-1].length>0){
+                noFill();
+                stroke(0);
+                if (runOut) runOut=false;
+                rand = int(random(0,imgBox[option-1].length));
+                newImg = imgBox[option-1][rand];
+                imgBox[option-1].splice(rand,1);
+            }
+        
+            else {
+                txt = 'Run out of things to say!! Try another option';
+                runOut=true;
+               
+            }
+        }
+     else if(option==9)
+        {
+            noStroke();
+            fill('white');
+            rect(10,10,600,40);
+           
+            if(imgBox[option-1].length>0){
+                noFill();
+                stroke(0);
+                if (runOut) runOut=false;
+                rand = int(random(0,imgBox[option-1].length));
+                newImg = imgBox[option-1][rand];
+                imgBox[option-1].splice(rand,1);
+            }
+        
+            else {
+                txt = 'Run out of things to say!! Try another option';
+                runOut=true;
+               
+            }
+        }
+    
+     else if(option==10)
+        {
+            noStroke();
+            fill('white');
+            rect(10,10,600,40);
+           
+            if(imgBox[option-1].length>0){
+                noFill();
+                stroke(0);
+                if (runOut) runOut=false;
+                rand = int(random(0,imgBox[option-1].length));
+                newImg = imgBox[option-1][rand];
+                imgBox[option-1].splice(rand,1);
+            }
+        
+            else {
+                txt = 'Run out of things to say!! Try another option';
+                runOut=true;
+               
+            }
+        }
    
     
 } 
